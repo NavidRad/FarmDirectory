@@ -1,0 +1,88 @@
+<div ng-if="view == 'list'" class="main-div">
+    <h2>Farms Directory</h2>
+    <div class="form-group">
+        <input type="search" placeholder="search" class="form-control" ng-model="search">
+    </div>
+    <div style="top:120px;">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <table class="table table-hover">
+                    <tr><th>Name</th><th>Details</th></tr>
+                    <tr class="" ng-repeat="farm in farms | filterByProperty:search:'name'">
+                        <td>{{farm.name}}</td>
+                        <td>
+                            <button class="btn btn-primary" ng-click="go('/farms/' + farm.id)">
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div ng-if="view == 'details' || view == 'entities'" style="margin-top:20px;">
+    <button class="btn btn-primary" ng-click="back()" style="margin-left:80px; margin-bottom:12px;">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </button>
+    <h2 ng-if="view == 'details'" style="display:inline; margin-left:20px;">Farm Detail</h2>
+    <h2 ng-if="view == 'entities'" style="display:inline; margin-left:20px;">Entity Detail</h2>
+</div>
+
+<div ng-if="view == 'details'" class="main-div">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h2 class="panel-title">{{farm.name}}</h2>
+        </div>
+        <div class="panel-body">
+            <table class="table table-hover">
+                <tr>
+                    <td colspan="3"><h5>Volume: {{farm.volume}}</h5></td>
+                </tr>
+                <tr>
+                    <td colspan="3"><h5>Entities:</h5></td>
+                </tr>
+                <tr><th>ID</th><th>Start Date</th><th>End Date</th></tr>
+                <tr class="" ng-repeat="entity in entities" ng-click="go('/farms/' + selectedFarm + '/entities/' + entity.id)" style="cursor: pointer;">
+                    <td class="col-md-3">{{entity.id}}</td>
+                    <td class="col-md-3">{{entity.startDate | date : "short"}}</td>
+                    <td class="col-md-3">{{entity.endDate | date : "short"}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div ng-if="view == 'entities'" class="main-div">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h2 class="panel-title">Entity {{selectedEntity}}</h2>
+        </div>
+        <div class="panel-body">
+            <table class="table table-hover">
+                <tr><th>Status</th><th>Start Date</th><th>End Date</th><th>Farm</th><th>Sex</th><th>Entity Age in Days</th></tr>
+                <tr>
+                    <td>{{entity.Status}}</td>
+                    <td>{{entity.StartDate | date : "short"}}</td>
+                    <td>{{entity.EndDate | date : "short"}}</td>
+                    <td>{{entity.Farm}}</td>
+                    <td>{{entity.Sex}}</td>
+                    <td>{{entity.EntityAgeDays}}</td>
+                </tr>
+            </table>
+            <div fusioncharts
+                 width= "100%"
+                 height="500"
+                 type="column2d"
+                 dataSource="{{TemperatureDataSource}}">
+            </div>
+            <div fusioncharts
+                 width="100%"
+                 height="400"
+                 type="column2d"
+                 dataSource="{{WeightDataSource}}">
+            </div>
+        </div>
+    </div>
+</div>

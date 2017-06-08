@@ -1,0 +1,35 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <base href="/"> 
+    <title>ScioplusTest</title>
+    <meta charset="utf-8">
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+</head>
+<body ng-app="app" ng-controller="MainCtrl">
+    <div ng-view ng-class="slider">
+    </div>
+    <!-- anuglar -->
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.min.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.min.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+    <script src="bower_components/angular-route/angular-route.min.js"></script>
+    <!-- Modules -->
+    <script src="app.js"></script>
+    <!-- Controllers -->
+    <script src="controllers/MainCtrl.js"></script>
+    <script src="controllers/FarmCtrl.js"></script>
+    <!-- Services -->
+    <script src="services/Farm.js"></script>
+    <script src="services/Entity.js"></script>
+    <!-- Filters -->
+    <script src="filters/filterByProperty.js"></script>
+    <!--fusioncharts-->
+    <script src="js/fusioncharts.js"></script>
+    <script src="js/angular-fusioncharts.min.js"></script>
+    <script src="js/fusioncharts.charts.js"></script>
+    <script src="js/fusioncharts.theme.fint.js"></script>
+</body>
+</html>
